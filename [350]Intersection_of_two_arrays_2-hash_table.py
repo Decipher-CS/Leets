@@ -35,38 +35,32 @@ import numpy
 
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]):
-        value_map1 = {}
-        value_map2 = {}
-        intersection_array = []
+        value_map = {}
+        intersections = []
+        
+        if len(nums1) > len(nums2):
+            nums1, nums2 = nums2, nums1
         
         for num in nums1:
-            if value_map1.get(num):
-                value_map1[num] = value_map1.get(num) + 1
+            if num in value_map:
+                value_map[num] += 1
             else:
-                value_map1[num] = 1
+                value_map[num] = 1
+        for value in nums2:
+            if (value in value_map) and (value_map[value] > 0):
+                print(value)
+                value_map[value] -= 1
+                intersections.append(value)
+        return intersections
 
-        for num in nums2:
-            if value_map2.get(num):
-                value_map2[num] = value_map2.get(num) + 1
-            else:
-                value_map2[num] = 1
-        print(value_map1, value_map2)
-        
-        for key in value_map1:
-            if ( value_map2.get(key) ) and ( value_map2[key] > 0 ):
-                for i in range(numpy.minimum(value_map1[key], value_map2[key])):
-                    intersection_array.append(key)
-        
-        return intersection_array
-
-nums1 = [1,2,2,1]
-nums2 = [2,2]
+# nums1 = [1,2,2,1]
+# nums2 = [2,2]
 
 # nums1 = [4,9,5]
 # nums2 = [9,4,9,8,4]
 
-# nums1 = [1,2]
-# nums2 = [1,1]
+nums1 = [1,2]
+nums2 = [1,1]
 
 result = Solution().intersect(nums1, nums2)
 print(result)

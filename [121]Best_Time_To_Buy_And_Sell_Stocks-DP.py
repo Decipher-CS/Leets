@@ -27,12 +27,26 @@
 # 1 <= prices.length <= 105
 # 0 <= prices[i] <= 104
 
+
+
+from cmath import inf
+from typing import List
+
+
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        pass
+    def maxProfit(self, prices: List[int]):
+        least = inf
+        profit = 0
+        
+        for right_value in prices:
+            if (least > right_value):
+                least = right_value
+                continue
+            
+            if ((right_value - least) > profit) :
+                profit = right_value - least
+        return profit
 
-
-prices = [7,1,5,3,6,4]
-
-result = Solution().maxProfit(prices)
+prices = [7,1,5,3,6,4], [7,6,4,3,1]
+result = Solution().maxProfit(prices[0])
 print(result)

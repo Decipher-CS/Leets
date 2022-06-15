@@ -17,7 +17,7 @@
 # 1 <= numRows <= 30
 
 from typing import List
-
+"""
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
         final_arr = [[1]]
@@ -37,6 +37,23 @@ class Solution:
         
         rec([], numRows-1)
         return  final_arr
+"""
+
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        if numRows == 1:
+            return [[1]]
+        
+        final_arr = [[1], [1,1]]
+        
+        for row in range(2, numRows):
+            new_arr = []
+            for col in range(1, row):
+                new_arr.append(final_arr[row-1][col-1] + final_arr[row-1][col])
+            
+            final_arr.append([1] + new_arr + [1])
+        
+        return final_arr
 
 
 numRows = 5

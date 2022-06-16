@@ -50,12 +50,55 @@
 # board[i][j] is a digit 1-9 or '.'
 
 
+from typing import List
+
+
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        pass
-
-
-board = [["5","3",".",".","7",".",".",".","."]
+        map = {}
+        grid_size = 3
+        # formula = (grid_size * grid_set) + grid_number
+        for row in range(9):
+                col_map = {}
+                for col in range(9):
+                        value = board[row][col]
+                        if value in col_map.keys():
+                                return False
+                        if value != '.':
+                                col_map[value] = value
+        for col in range(9):
+                row_map = {}
+                for row in range(9):
+                        value = board[row][col]
+                        if value in row_map.keys():
+                                return False
+                        if value != '.':
+                                row_map[value] = value
+        for grid_row in range(3):
+                grid_row = grid_row * grid_size
+                for grid_col in range(3):
+                        grid_col = grid_col * grid_size
+                        grid_map = {}
+                        for i in range(3):
+                                for j in range(3):
+                                        value = board[grid_row + i][grid_col + j]
+                                        if value in grid_map.keys():
+                                                return False
+                                        if value != '.':
+                                                grid_map[value] = value
+        return True
+board =(
+        [[".",".",".",".","5",".",".","1","."]
+        ,[".","4",".","3",".",".",".",".","."]
+        ,[".",".",".",".",".","3",".",".","1"]
+        ,["8",".",".",".",".",".",".","2","."]
+        ,[".",".","2",".","7",".",".",".","."]
+        ,[".","1","5",".",".",".",".",".","."]
+        ,[".",".",".",".",".","2",".",".","."]
+        ,[".","2",".","9",".",".",".",".","."]
+        ,[".",".","4",".",".",".",".",".","."]],
+        
+        [["5","3",".",".","7",".",".",".","."]
         ,["6",".",".","1","9","5",".",".","."]
         ,[".","9","8",".",".",".",".","6","."]
         ,["8",".",".",".","6",".",".",".","3"]
@@ -64,5 +107,6 @@ board = [["5","3",".",".","7",".",".",".","."]
         ,[".","6",".",".",".",".","2","8","."]
         ,[".",".",".","4","1","9",".",".","5"]
         ,[".",".",".",".","8",".",".","7","9"]]
-result = Solution().isValidSudoku(board)
+        )
+result = Solution().isValidSudoku(board[0])
 print(result)

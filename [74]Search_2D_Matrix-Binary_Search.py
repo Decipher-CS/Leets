@@ -33,19 +33,9 @@ class Solution:
         merged_matrix = []
         for mat in matrix:
             merged_matrix +=mat
-        while len(merged_matrix) >= 1:     #Change this
-            mid = int( len(merged_matrix) / 2 )
-            value = merged_matrix[mid]
-            if value == target:
-                return True
-            if target < value:
-                merged_matrix = merged_matrix[:mid]
-            elif target > value:
-                merged_matrix = merged_matrix[mid+1:]
-            
+        if target in merged_matrix:
+            return True
         return False
-
-# if target in array return True
 
 matrices = [
     {

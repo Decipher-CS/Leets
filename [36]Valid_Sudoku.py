@@ -49,7 +49,8 @@
 # board[i].length == 9
 # board[i][j] is a digit 1-9 or '.'
 
-
+from time import sleep
+from timeit import timeit
 from typing import List
 
 
@@ -60,20 +61,19 @@ class Solution:
         # formula = (grid_size * grid_set) + grid_number
         for row in range(9):
                 col_map = {}
+                row_map = {}
                 for col in range(9):
                         value = board[row][col]
                         if value in col_map.keys():
                                 return False
                         if value != '.':
                                 col_map[value] = value
-        for col in range(9):
-                row_map = {}
-                for row in range(9):
-                        value = board[row][col]
+                        
+                        value = board[col][row]
                         if value in row_map.keys():
                                 return False
                         if value != '.':
-                                row_map[value] = value
+                                row_map[value] = value        
         for grid_row in range(3):
                 grid_row = grid_row * grid_size
                 for grid_col in range(3):
@@ -87,7 +87,9 @@ class Solution:
                                         if value != '.':
                                                 grid_map[value] = value
         return True
-board =(
+
+
+boards =(
         [[".",".",".",".","5",".",".","1","."]
         ,[".","4",".","3",".",".",".",".","."]
         ,[".",".",".",".",".","3",".",".","1"]
@@ -108,5 +110,7 @@ board =(
         ,[".",".",".","4","1","9",".",".","5"]
         ,[".",".",".",".","8",".",".","7","9"]]
         )
-result = Solution().isValidSudoku(board[0])
-print(result)
+for board in boards:
+        t = timeit(lambda: print(Solution().isValidSudoku(board)), number=1)
+        print(t*1000000)
+

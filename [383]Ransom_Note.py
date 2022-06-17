@@ -28,10 +28,10 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str):
         for letter in ransomNote:
-            isFound = magazine.find(letter)
-            if isFound == -1:
-                return False
-            magazine = magazine.replace(letter, '', 1)
+            if letter in magazine:
+                magazine = magazine.replace(letter, '', 1)
+                continue
+            return False
         return True
 
 inputs = [
@@ -47,3 +47,6 @@ inputs = [
 
 for input in inputs:
     print(Solution().canConstruct(input['ransomNote'], input['magazine']))
+# str = ''
+# str = str.replace('', '')
+# print(len(str))

@@ -64,6 +64,4 @@ class Solution:
         return head_node.next
 
 
-for input in inputs:
-    print(input)
-    print(Solution().hasCycle(input))
+print(Solution().hasCycle())

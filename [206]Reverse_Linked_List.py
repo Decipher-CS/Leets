@@ -23,6 +23,7 @@
 # -5000 <= Node.val <= 5000
 
 
+import queue
 from typing import Optional
 
 
@@ -34,4 +35,21 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: Optional[ListNode]):
-        pass
+        q = []
+        node = head
+        
+        while node:
+            q.append(node)
+            node = node.next
+
+        if q:
+            head = q.pop()
+        
+        node = head
+
+        while q:
+            node.next = q.pop()
+            node = node.next
+            node.next = None
+        
+        return head

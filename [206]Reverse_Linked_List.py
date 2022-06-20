@@ -33,6 +33,7 @@ class ListNode:
         self.val = val
         self.next = next
 
+# Iteration 1
 class Solution:
     def reverseList(self, head: Optional[ListNode]):
         q = []
@@ -53,3 +54,16 @@ class Solution:
             node.next = None
         
         return head
+
+# Iteration 2
+class Solution:
+    def reverseList(self, head: Optional[ListNode]):
+        pre = None
+        current = head
+        
+        while current:
+            next = current.next
+            current.next = pre
+            pre = current
+            current = next
+        return pre

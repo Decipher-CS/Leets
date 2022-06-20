@@ -30,15 +30,9 @@ class ListNode:
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]):
         current = head
-        new_list = ListNode('$$$')
-        new_head = new_list
         
         while current:
-            if new_list.val == current.val:
-                current = current.next
-                continue
-            new_list.next = current
-            new_list = new_list.next
-            new_list.next = None
+            while current.next and (current.val == current.next.val):
+                current.next = current.next.next
             current = current.next
-        return new_head.next
+        return head

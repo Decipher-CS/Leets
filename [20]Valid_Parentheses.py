@@ -29,27 +29,34 @@
 
 class Solution:
     def isValid(self, s: str):
-        # if len(s) % 2 != 0:
-        #     return False
-        # for index in range(0, len(s)-1, 2):
-        #     if (s[index] == '('):
-        #         if s[index+1] == ')':
-        #             continue
-        #     elif (s[index] == '['):
-        #         if s[index+1] == ']':
-        #             continue
-        #     elif (s[index] == '{'):
-        #         if s[index+1] == '}':
-        #             continue
-        #     return False
-        # return True
+        if len(s) % 2 != 0:
+            return False
+        corresponding_dict = {
+            '(' : ')',
+            '[' : ']',
+            '{' : '}'
+        }
+        stk = []
+        
+        for char in s:
+            if char in '{[(':
+                stk.append(char)
+
+            elif char in ')]}':
+                if len(stk) < 1:
+                    return False
+                value = corresponding_dict[ stk.pop() ]
+
+                if value != char:
+                    return False
+        
+        return False if len(stk) > 0 else True
 
 
 inputs = [
-    '()',
-    '()[]{}'
+    '((',
+    # '()[]{}'
 ]
 
 for input in inputs:
     print(Solution().isValid(input))
-    

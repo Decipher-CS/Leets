@@ -26,7 +26,7 @@
 # 1 <= s.length <= 104
 # s consists of parentheses only '()[]{}'.
 
-
+# Third Iteration
 class Solution:
     def isValid(self, s: str):
         if len(s) % 2 != 0:
@@ -52,7 +52,7 @@ class Solution:
         
         return False if len(stk) > 0 else True
 
-# Second Itteration
+# Second Iteration
 class Solution:
     def isValid(self, s: str):
         if len(s) % 2 != 0:
@@ -80,8 +80,29 @@ class Solution:
         
         return True if not stk else False
 
+# Third and Final Iteration
+class Solution:
+    def isValid(self, s: str):
+        if len(s) % 2 != 0:
+            return False
+        
+        corresponding_dict = {
+            ')' : '(',
+            ']' : '[',
+            '}' : '{'
+        }
+        stk = []
+        
+        for ch in s:
+            if ch in '([{':
+                stk.append(ch)
 
+            else:
+                if not stk or corresponding_dict[ch] != stk.pop():
+                    return False
 
+                    
+        return True if not stk else False
 
 
 inputs = [

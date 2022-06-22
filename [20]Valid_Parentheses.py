@@ -52,10 +52,48 @@ class Solution:
         
         return False if len(stk) > 0 else True
 
+# Second Itteration
+class Solution:
+    def isValid(self, s: str):
+        if len(s) % 2 != 0:
+            return False
+        
+        if ( s[0] in ')]}' ) or ( s[-1] in '{[('):
+            return False
+        
+        corresponding_dict = {
+            ')' : '(',
+            ']' : '[',
+            '}' : '{'
+        }
+        stk = []
+        
+        for ch in s:
+            if stk and ( ch in corresponding_dict.keys() ):
+                if corresponding_dict[ch] != stk.pop():
+                    return False
+
+            elif ch in '([{':
+                stk.append(ch)
+            
+            else: return False
+        
+        return True if not stk else False
+
+
+
+
 
 inputs = [
-    '((',
+    # '((',
     # '()[]{}'
+    # "()",
+    # "()[]{}",
+    # "{()()[][]{{()}}}",
+    # "[]{}{()(]}",
+    # "(]",
+    # "((",
+    '()[]'
 ]
 
 for input in inputs:

@@ -1,5 +1,4 @@
 from typing import Optional
-from unittest import result
 
 # Definition for a binary tree node.
 class TreeNode:

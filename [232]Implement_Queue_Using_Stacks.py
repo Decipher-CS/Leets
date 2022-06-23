@@ -44,7 +44,8 @@
 class MyQueue:
     
     def __init__(self):
-        self.q = []
+        self.q = [] # FIFO
+        self.stk = [] # FILO
 
     def push(self, x: int):
         self.q.append(x)

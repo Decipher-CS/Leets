@@ -6,8 +6,6 @@ class TreeNode:
         self.right = right
 
 # Recursive Solution
-
-
 class Solution:
     def postorderTraversal(self, root):
         result = []

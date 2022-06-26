@@ -1,7 +1,7 @@
 class Solution:
     def convert(self, s: str, numRows: int):
         if numRows == 1:
-            return sr
+            return s
         result = [[] for i in range(numRows)]
         isIncrement = True
         inc = 0

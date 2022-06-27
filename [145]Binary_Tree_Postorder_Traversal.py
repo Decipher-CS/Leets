@@ -26,19 +26,36 @@ class Solution:
 # Iterative Solution
 class Solution:
     def postorderTraversal(self, root):
+        # stk = []
+        # result = []
+        # ptr = root
+        # while 1:
+        #     while ptr:
+        #         stk.append(ptr)
+        #         ptr = ptr.left
+        #     if not stk:
+        #         break
+        #     ptr = stk.pop()
+        #     result.append(ptr.val)
+        #     ptr = ptr.right
+        # return result
+        
         stk = []
         result = []
-        ptr = root
+        node = root
+        
         while 1:
-            while ptr:
-                stk.append(ptr)
-                ptr = ptr.left
-            if not stk:
-                break
-            ptr = stk.pop()
-            result.append(ptr.val)
-            ptr = ptr.right
-        return result
+            while 1:
+                stk.append(node)
+                if not node.left:
+                    break
+                node = node.left
+            if node.right:
+                node = node.right
+                stk.append(node)
+            result.append(node.val)
+            node = stk.pop()
+            
 
 
 head = TreeNode(1, None, TreeNode(2, TreeNode(3), None))

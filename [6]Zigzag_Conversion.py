@@ -18,17 +18,6 @@ class Solution:
                 ans += r
         return ans
 
-# Do the fastest solution from leetcode here.
-# class Solution:
-#     def convert(self, s: str, numRows: int):
-#         str = [""] *numRows
-#         isInc = True
-#         inc = 1
-#         i = 0
-#         for ch in s:
-#             str[i] += ch
-#             pass
-
 inputs = [
     ["PAYPALISHIRING", 3,"PAHNAPLSIIGYIR"],
     ["ABCDE", 4 ,"ABCED"]

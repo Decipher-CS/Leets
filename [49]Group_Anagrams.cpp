@@ -12,10 +12,9 @@ public:
             temp_res.push_back(*it);
             for (auto itj = begin(strs); itj != end(strs); ++itj){
                 if (*it == *itj){
-                    strs.erase(itj);
                     continue;
                 } 
-                if (isAnagram((*it).copy , *itj)){
+                if (isAnagram((*it) , *itj)){
                     temp_res.push_back(*itj);
                     strs.erase(itj);
                 }
@@ -51,13 +50,10 @@ int main(void){
         }
         cout << endl;
     }
+    // string s = "hello";
+    // cout << typeid(s).name() << endl;
     // for (auto it = begin(strs);  it != end(strs); ++it){
-    //     if (*it == "tan"){
-    //         strs.erase(it);
-    //         // *it = "hey";
-    //     }
-    //     cout<< *it << endl;
-        
+    //     cout << typeid(string(*it)).name() << endl;
     // }
 
     // cout << endl;
@@ -65,7 +61,7 @@ int main(void){
     // cout << endl;
 
     // for (auto str : strs){
-    //     cout << str << endl;
+    //     cout << typeid(str).name() << endl;
     // }
 
     return 0;

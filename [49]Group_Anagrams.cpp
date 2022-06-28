@@ -1,10 +1,44 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <string>
 using namespace std;
 
 class Solution {
 public:
-    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+    vector<vector<string>> groupAnagramsV2(vector<string>& strs) {
+        unordered_map<std::string, vector<string>> hm;
+        vector<vector<string>> result;
+        vector<string> temp_result;
+
+        for (auto str : strs)
+        {
+                hm[sort_char(str)].push_back({str});
+        }
+
+        for (auto &key : hm)
+        {
+            temp_result.clear();
+            for (auto &val : key.second){
+                // cout <<key.first << " : "<< val << endl ;
+                temp_result.push_back(val);
+            }
+            result.push_back(temp_result);
+            // cout << endl;
+        }
+
+        return result;
+    }
+
+    string sort_char(string str){
+        string temp_str = str;
+        sort(begin(temp_str), end(temp_str));
+        return temp_str;
+    }
+
+
+    vector<vector<string>> groupAnagramsV1(vector<string>& strs) {
         vector<vector<string>> result = {};
         vector<string> temp_res;
         while (strs.size() > 0)
@@ -29,7 +63,7 @@ public:
         return result;
     }
 
-public:
+
     bool isAnagram(string str1, string str2) {
         if (str1.length() != str2.length())
             return false;
@@ -55,8 +89,5 @@ int main(void){
         }
         cout << endl;
     }
-    // string str1 = strs[0];
-    // string str2 = strs[3];
-    // cout << Solution().isAnagram(str2, str1) << endl;
     return 0;
 }

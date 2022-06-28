@@ -12,21 +12,11 @@ public:
         vector<vector<string>> result;
         vector<string> temp_result;
 
-        for (auto str : strs)
-        {
-                hm[sort_char(str)].push_back({str});
-        }
+        for (auto &str : strs)
+                hm[sort_char(str)].push_back(str);
 
         for (auto &key : hm)
-        {
-            temp_result.clear();
-            for (auto &val : key.second){
-                // cout <<key.first << " : "<< val << endl ;
-                temp_result.push_back(val);
-            }
-            result.push_back(temp_result);
-            // cout << endl;
-        }
+                result.push_back(key.second);
 
         return result;
     }
@@ -82,7 +72,7 @@ int main(void){
     vector<string> strs = {"eat","tea","tan","ate","nat","bat"};
     // vector<string> strs = {"a","a","a"};
     // vector<string> strs = {"abbbbbbbbbbb","aaaaaaaaaaab"};
-    vector<vector<string>> sol = Solution().groupAnagrams(strs);
+    vector<vector<string>> sol = Solution().groupAnagramsV2(strs);
     for (auto strings : sol){
         for (auto str : strings){
             cout << str << " ";

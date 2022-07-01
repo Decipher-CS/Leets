@@ -5,21 +5,14 @@
 
 using namespace std;
 
-// TODO //
-// Try Recursion //
-
 class Solution {
 public:
     // ITERATIVE SOLUTION
     vector<int> result;
     vector<int> runningSum(vector<int>& nums) {
         vector<int> result;
-        for (int i = 0; i < nums.size() ; ++i){
-            // cout << nums[i] << endl;
-            if (i==0){
-                result.push_back(0 + nums[i]);
-            } else
-                result.push_back(result[i-1] + nums[i]);
+        for (int i = 1; i < nums.size() ; ++i){
+            result.push_back(result[i-1] + nums[i]);
         }
         for (auto res : result)
             cout << res << endl;
@@ -41,7 +34,7 @@ public:
 
 int main(){
     vector<int> nums = {1,2,3,4};
-    vector<int> result = Solution().runningSum_recursion(nums);
+    vector<int> result = Solution().runningSum(nums);
     for (auto res :result )
         cout << res << endl;
     return 0;

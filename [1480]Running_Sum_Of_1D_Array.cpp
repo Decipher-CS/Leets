@@ -10,6 +10,8 @@ using namespace std;
 
 class Solution {
 public:
+    // ITERATIVE SOLUTION
+    vector<int> result;
     vector<int> runningSum(vector<int>& nums) {
         vector<int> result;
         for (int i = 0; i < nums.size() ; ++i){
@@ -24,11 +26,23 @@ public:
 
         return result;
     }
+    // RECURSIVE SOLUTION
+    vector<int> runningSum_recursion(vector<int>& nums) {
+        if (nums.size() == 1)   return nums;
+        int temp_val = nums[nums.size()-1];
+        nums.pop_back();
+        nums = Solution().runningSum_recursion(nums);
+        nums.push_back(temp_val + nums[nums.size()-1]);
+        return nums;
+    }
+
 };
 
 
 int main(){
     vector<int> nums = {1,2,3,4};
-    Solution().runningSum(nums);
+    vector<int> result = Solution().runningSum_recursion(nums);
+    for (auto res :result )
+        cout << res << endl;
     return 0;
 }

@@ -1,43 +1,34 @@
 from typing import List
+from numpy import ceil
 
 
 class Solution:
+        # BINARY SEARCH APPROACH
     def minEatingSpeed(self, piles: List[int], h: int):
-        bph = 1 # Bananas Per Hour
-
-        while 1:
-            temp_pile = piles[:]
+        pass
+        
+        # BRUTE FORCE APPROACH
+    def minEatingSpeed_bruteForce(self, piles: List[int], h: int):
+        piles.sort()
+        speed = 1
+        while (1):
             temp_h = h
-            i = 0
-            isEmpty = 1
-            inc = -1
+            for pile in piles:
+                temp_h -= ceil(pile/speed)
+                temp_h = int(temp_h)
+                if (temp_h < 0):
+                    speed += 1
+                    break
+            if (temp_h >= 0):
+                return speed
 
-            while (temp_h):
-                i+=inc
-                if ((i == len(temp_pile)) or (i == -1)):
-                    inc *= -1
-                    i+=inc
+        return speed
 
-                if not temp_pile[i]:
-                    continue
-                if ((temp_pile[i] - bph) <= 0):
-                    temp_pile[i] = 0
-                else:
-                    temp_pile[i] -= bph
-                
-                temp_h -= 1
+inputs = [
+    ([3,6,7,11], 8),
+    ([30,11,23,4,20], 5),
+    ([312884470], 312884469)
+]
 
-            for pile in temp_pile:
-                if pile:
-                    isEmpty = 0
-            print(bph, temp_pile)
-            if isEmpty:
-                return bph
-            bph += 1
-        return -1
-
-# piles = [3,6,7,11]
-# h = 8
-# piles = [30,11,23,4,20]
-# h = 5
-print(Solution().minEatingSpeed(piles, h))
+for pile, h in inputs:
+    print(f'\ninput : {pile}, h : {h} solution => ', Solution().minEatingSpeed(pile, h))

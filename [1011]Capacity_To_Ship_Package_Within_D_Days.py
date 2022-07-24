@@ -5,7 +5,6 @@ class Solution:
     def shipWithinDays(self, weights: List[int], days: int):
         left = max(weights)
         right = sum(weights)
-        mid = 0
         while (right >= left):
             mid = (right + left) // 2
             d = self.shipWithinDays_helper(weights, days, mid)
@@ -22,17 +21,17 @@ class Solution:
 
     def shipWithinDays_helper(self, weights, days, weight_capacity):
         running_sum = 0
-        d = 1
         for w in weights:
             running_sum += w
             if (running_sum > weight_capacity):
                 running_sum = w
-                d += 1
+                days -= 1
+                if (days <= 0):
+                    return -1
 
-        days_needed = days - d
-        if (days_needed == 0):
+        if (days== 0):
             return 0 # Minimum weight capacity not enough. Increase it.
-        elif (days_needed > 0):
+        elif (days> 0):
             return 1 # Minimum weight capacity more than necessary. Decrease it.
 
         return -1 # Minimum weight capacity at the right amount. 

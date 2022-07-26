@@ -1,6 +1,5 @@
 from typing import List
 from numpy import ceil
-import numpy
 
 
 class Solution:
@@ -12,7 +11,7 @@ class Solution:
             temp_h = h
             mid = (left + right) // 2
             for pile in piles:
-                temp_h -= numpy.ceil(pile/mid)
+                temp_h -= ceil(pile/mid)
  
             if (temp_h < 0):
                 left = mid+1

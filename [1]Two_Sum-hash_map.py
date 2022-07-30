@@ -41,20 +41,24 @@ from typing import List
 
 
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        retrieved_values = {}
-        
-        for index, num in enumerate(nums):
-            if (target - num) in retrieved_values:
-                return [retrieved_values[target - num], index]
-            else:
-                retrieved_values.update({num : index})
+    # def twoSum(self, nums: List[int], target: int) -> List[int]:
+    #     retrieved_values = {}
+    #     for index, num in enumerate(nums):
+    #         if (target - num) in retrieved_values:
+    #             return [retrieved_values[target - num], index]
+    #         retrieved_values.update({num : index})
 
-        return 0
+    def twoSum(self, nums: List[int], target: int):
+        hm = {}
+        for i, num in enumerate(nums):
+            if (target - num) in hm:
+                return [i, hm[target-num]]
+            hm[num] = i
 
-
-input_array = [2,7,11,15]
-target = 9
+# input_array = [2,7,11,15]
+# target = 9
+input_array = [3,2,4]
+target = 6
 
 result = Solution().twoSum(input_array ,target=target)
 

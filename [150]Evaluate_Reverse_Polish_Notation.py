@@ -1,27 +1,30 @@
+import collections
 from typing import List
 
 
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        stack = []
+        stack = collections.deque()
 
         for token in tokens:
             if not token in '+-*/':
                 stack.append(int(token))
                 continue
-            if token == '-':
-                val1 = stack.pop() 
-                val2 = stack.pop()
-                stack.append(int(val2 - val1))
-            elif token == '+':
-                stack.append(int(stack.pop() + stack.pop()))
+
+            val1, val2= stack.pop(), stack.pop()
+            
+            if token == '+':
+                result = val1 + val2
+            elif token == '-':
+                result = val2 - val1
             elif token == '*':
-                stack.append(int(stack.pop() * stack.pop()))
+                result = val1 * val2
             else:
-                val1 = stack.pop() 
-                val2 = stack.pop()
-                stack.append(int(val2 / val1))
-        return stack[0]
+                result = val2 / val1
+
+            stack.append(int(result))
+
+        return stack.pop()
 
 tokens = [
     ["2","1","+","3","*"], # output => 9
